@@ -27,9 +27,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.requirements << 'exception_notification", "~> 2.5.2"'
+  #spec.requirements << 'exception_notification", "~> 2.5.2"'
 
-  spec.add_runtime_dependency 'exception_notification", "~> 2.5.2"'
+  #spec.add_runtime_dependency 'exception_notification", "~> 2.5.2"'
   #spec.add_runtime_dependency 'notifier'
 
   spec.add_dependency 'notifier'
