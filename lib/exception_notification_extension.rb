@@ -1,7 +1,9 @@
 require "exception_notification_extension/version"
+
 require 'action_mailer'
 require 'exception_notification'
 require 'notifier'
+
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
     super(env, exception)
@@ -59,8 +61,6 @@ module ExceptionNotificationExtension
    
   end
   def open_file_in_editor(editor, path)
-    puts editor
-    puts path
     system "#{editor} #{path}"
   end
   def os_notify(title, msg)    
