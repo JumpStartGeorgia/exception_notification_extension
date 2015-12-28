@@ -1,6 +1,6 @@
 require "exception_notification_extension/version"
 require 'action_mailer'
-
+require 'exception_notification'
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
     super(env, exception)
