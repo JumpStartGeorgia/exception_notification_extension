@@ -73,9 +73,9 @@ end
 
 
 
-class ExceptionNotifier
-  class Notifier < ActionMailer::Base
-    prepend ExceptionNotifierExtensions
-  end
-end
+# class ExceptionNotifier
+#   class Notifier < ActionMailer::Base
+#     prepend ExceptionNotifierExtensions
+#   end
+# end
 
