@@ -6,10 +6,12 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile under development group :
 
 ```ruby
-gem 'exception_notification_extension'
+group :development do
+  gem 'exception_notification_extension', :git => 'git@github.com:JumpStartGeorgia/exception_notification_extension.git'
+end
 ```
 
 And then execute:
@@ -21,6 +23,18 @@ Or install it yourself as:
     $ gem install exception_notification_extension
 
 ## Usage
+
+By default you don't need to do anything it will show error in os popup and open file where error occur on specific line
+
+Default editor is sublime text(command:subl), if you want to change to atom then use 
+
+```ruby
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Dev App Error (#{Rails.env})] ",
+    :sender_address => ENV['APPLICATION_ERROR_FROM_EMAIL'],
+    :exception_recipients => [ENV['APPLICATION_FEEDBACK_TO_EMAIL']],
+    :editor => "atom"
+```
 
 TODO: Write usage instructions here
 
