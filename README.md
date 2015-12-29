@@ -1,8 +1,7 @@
 # ExceptionNotificationExtension
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/exception_notification_extension`. To experiment with that code, run `bin/console` for an interactive prompt.
+Add ability to show exception info using os Notification system and open file in which error occur in editor on specific line. It is an extension for basic exception notification system for rails (https://github.com/rails/exception_notification).
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -16,7 +15,7 @@ end
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -24,25 +23,23 @@ Or install it yourself as:
 
 ## Usage
 
-By default you don't need to do anything it will show error in os popup and open file where error occur on specific line
-
 Default editor is sublime text(command:subl), if you want to change to atom then use 
 
 ```ruby
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[Dev App Error (#{Rails.env})] ",
-    :sender_address => ENV['APPLICATION_ERROR_FROM_EMAIL'],
-    :exception_recipients => [ENV['APPLICATION_FEEDBACK_TO_EMAIL']],
+    :email_prefix => XXX,
+    :sender_address => XXX,
+    ...
     :editor => "atom"
 ```
 
-TODO: Write usage instructions here
+## Note
+  If more then one editor is opened then file is opened is one that last was active.
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Todo 
+  ability to turn off extension from configuration file with flag
+  ability to add custom format for popup
+  add customizable timeout for popup to stay longer
 
 ## Contributing
 
