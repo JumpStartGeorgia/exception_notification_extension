@@ -1,7 +1,7 @@
 # ExceptionNotificationExtension
 
 Add ability to show exception info using os notification system and open file with error in your editor on specific line. 
-It is an extension for basic exception notification system for rails (https://github.com/rails/exception_notification).
+It is an extension for basic exception notification system for rails [exception_notification](https://github.com/rails/exception_notification).
 
 
 ## Installation
@@ -36,7 +36,8 @@ Default editor is sublime text(command:subl), if you want to change to atom then
 
 ## Notes
 
-  If more then one editor is opened then file is opened is one that last was active.
+  If more then one editor is opened then file is opened in a window that was last active.
+  It uses notifer gem to show popup, if popup is not showing go to [notifier](https://github.com/fnando/notifier) there is guide for each os
 
 ## Todo 
   - ability to turn off extension from configuration file with flag
