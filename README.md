@@ -38,6 +38,7 @@ Default editor is sublime text(command:subl), if you want to change to atom then
 
   - If more then one editor is opened then file is opened in a window that was last active.
   - It uses notifer gem to show popup, if popup is not showing go to [notifier](https://github.com/fnando/notifier) there is guide for each os
+  - It should work for other editors two which support openning file on specific line but now it checks if it is sublime or atom and if not sets it to be sublime
 
 ## Todo 
   - ability to turn off extension from configuration file with flag
