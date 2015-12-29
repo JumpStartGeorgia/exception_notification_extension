@@ -66,7 +66,7 @@ module ExceptionNotificationExtension
   def os_notify(title, msg)    
     Notifier.notify(
       :image   => Rails.root.to_path + "/public/favicon.ico",
-      :title   => titlrailse.present? ? title : "Exception Notifier",
+      :title   => title.present? ? title : "Exception Notifier",
       :message => msg
     )
   end
