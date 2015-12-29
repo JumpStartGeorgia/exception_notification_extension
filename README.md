@@ -1,6 +1,6 @@
 # ExceptionNotificationExtension
 
-Add ability to show exception info using os Notification system and open file in which error occur in editor on specific line. It is an extension for basic exception notification system for rails (https://github.com/rails/exception_notification).
+Add ability to show exception info using os notification system and open file in which error occur in editor on specific line. It is an extension for basic exception notification system for rails (https://github.com/rails/exception_notification).
 
 
 ## Installation
