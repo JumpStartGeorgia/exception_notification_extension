@@ -35,7 +35,8 @@ module ExceptionNotificationExtension
       os_notify(title, output)
 
       if bs.present?
-        open_file_in_editor(editor, get_path(bs[0])) # tested with atom
+        @@editor = "subl" if ["subl", "atom"].index(@@editor).nil?
+        open_file_in_editor(get_path(bs[0])) # tested with atom
       end
 
     rescue Exception => e
@@ -60,8 +61,8 @@ module ExceptionNotificationExtension
     return Rails.root.to_path + "/" + path
    
   end
-  def open_file_in_editor(editor, path)
-    system "#{editor} #{path}"
+  def open_file_in_editor( path)
+    system "#{@@editor} #{path}"
   end
   def os_notify(title, msg)    
     Notifier.notify(
@@ -76,6 +77,7 @@ end
 
 class ExceptionNotifier
   class Notifier < ActionMailer::Base
+    @@editor = "subl"
     prepend ExceptionNotificationExtension
   end
 end
