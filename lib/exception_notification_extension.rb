@@ -7,7 +7,6 @@ require 'notifier'
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
     super(env, exception)
-    editor = "subl" # subl|atom
 
     #@env        = env
     @exception  = exception
@@ -35,7 +34,7 @@ module ExceptionNotificationExtension
       os_notify(title, output)
 
       if bs.present?
-        @@editor = "subl" if ["subl", "atom"].index(@@editor).nil?
+        @options[:editor] = "subl" if ["subl", "atom"].index(@options[:editor]).nil?
         open_file_in_editor(get_path(bs[0])) # tested with atom
       end
 
@@ -62,12 +61,12 @@ module ExceptionNotificationExtension
    
   end
   def open_file_in_editor( path)
-    system "#{@@editor} #{path}"
+    system "#{@options[:editor]} #{path}"
   end
   def os_notify(title, msg)    
     Notifier.notify(
       :image   => Rails.root.to_path + "/public/favicon.ico",
-      :title   => title.present? ? title : "Exception Notifier",
+      :title   => titlrailse.present? ? title : "Exception Notifier",
       :message => msg
     )
   end
@@ -76,7 +75,6 @@ end
 
 
 class ExceptionNotifier
-  @@editor = "subl"
   class Notifier < ActionMailer::Base
     prepend ExceptionNotificationExtension
   end
