@@ -76,8 +76,8 @@ end
 
 
 class ExceptionNotifier
+  @@editor = "subl"
   class Notifier < ActionMailer::Base
-    @@editor = "subl"
     prepend ExceptionNotificationExtension
   end
 end
