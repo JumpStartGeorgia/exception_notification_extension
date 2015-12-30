@@ -41,7 +41,7 @@ Any additional options should be applied to config/environments/development.rb f
 ```
 - :editor("subl") - default editor is sublime, as for now you can use subl or atom editor
   ```ruby
-      :editor => "atom"
+    :editor => "atom"
   ```
 - :on(true) - temporarily turn off extension, (require rails server to be reloaded)
   ```ruby
