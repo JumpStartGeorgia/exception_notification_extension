@@ -36,18 +36,19 @@ Any additional options should be applied to config/environments/development.rb f
     :sender_address => XXX,
     ...
     :editor => "subl",
-    :on => true
+    :on => true,
+    :timeout => 5000,
 ```
-- :editor - Default editor is sublime(subl), as for now you can use subl or atom editor
-```ruby
-    :editor => "atom",
-```
-- :on - temporarily turn off extension, (require rails server to be reloaded)
-```ruby
-  :on => false
-```
+- :editor("subl") - default editor is sublime, as for now you can use subl or atom editor
+  ```ruby
+      :editor => "atom"
+  ```
+- :on(true) - temporarily turn off extension, (require rails server to be reloaded)
+  ```ruby
+    :on => false
+  ```
 
-- :timeout - change popup visibility time in milliseconds after which it will disappear, (only notify-send can do this for now, for other os to support it need user request.)
+- :timeout(5000) - change popup visibility time in milliseconds after which it will disappear, (only notify-send can do this for now, for other os to support it need user request.)
   ```ruby
     :timeout => 6000
   ```
