@@ -6,12 +6,14 @@ require 'notifier'
 
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
-  puts @options.inspect
-    @options[:on] = true if !@options[:on].present?
-    #@options[:timeout] = 5000 if !@options[:timeout].present?
 
     super(env, exception)
+    
+    puts @options.inspect
 
+    @options[:on] = true if !@options[:on].present?
+    #@options[:timeout] = 5000 if !@options[:timeout].present?
+    #
     if @options[:on]
 
       #@env        = env
