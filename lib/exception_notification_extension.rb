@@ -101,7 +101,7 @@ module Notifier
         options[:title].to_s,
         options[:message].to_s,
         "-t",
-        options[:timeout].present? ? options[:timeout].to_s : "5000"
+        options.key?(:timeout) ? options[:timeout].to_s : "5000"
       ]
 
       Thread.new { system(*command) }.join
