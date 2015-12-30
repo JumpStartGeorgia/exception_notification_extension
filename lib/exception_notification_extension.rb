@@ -6,12 +6,13 @@ require 'notifier'
 
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
-    #@options[:on] = true if !@options[:on].present?
+  puts @options.inspect
+    @options[:on] = true if !@options[:on].present?
     #@options[:timeout] = 5000 if !@options[:timeout].present?
 
     super(env, exception)
 
-    #if @options[:on]
+    if @options[:on]
 
       #@env        = env
       @exception  = exception
@@ -46,7 +47,7 @@ module ExceptionNotificationExtension
       rescue Exception => e
         puts "ExceptionNotifierExtensions has some errors #{e.inspect}"
       end
-    #end
+    end
   end
   def get_path(path)
     path.strip!
