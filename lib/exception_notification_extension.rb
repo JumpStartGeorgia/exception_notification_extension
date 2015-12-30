@@ -8,7 +8,7 @@ module ExceptionNotificationExtension
  def exception_notification(env, exception)
 
     super(env, exception)
-    
+
     puts @options.inspect
 
     @options[:on] = true if !@options[:on].present?
@@ -17,11 +17,11 @@ module ExceptionNotificationExtension
     if @options[:on]
 
       #@env        = env
-      @exception  = exception
+      #@exception  = exception
       #@options    = (env['exception_notifier.options'] || {}).reverse_merge(self.class.default_options)
-      @kontroller = env['action_controller.instance'] || MissingController.new
-      @request    = ActionDispatch::Request.new(env)
-      @backtrace  = clean_backtrace(exception)
+      #@kontroller = env['action_controller.instance'] || MissingController.new
+      #@request    = ActionDispatch::Request.new(env)
+      #@backtrace  = clean_backtrace(exception)
       #@sections   = @options[:sections]
       #data        = env['exception_notifier.exception_data'] || {}
 
