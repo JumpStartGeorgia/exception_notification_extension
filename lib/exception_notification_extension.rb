@@ -10,6 +10,7 @@ module ExceptionNotificationExtension
     super(env, exception)
 
     puts @options.inspect
+    puts @options.class
 
     @options[:on] = true if !@options[:on].present?
     #@options[:timeout] = 5000 if !@options[:timeout].present?
