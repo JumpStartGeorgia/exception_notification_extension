@@ -82,6 +82,7 @@ end
 module Notifier
   module NotifySend
     def notify(options)
+      puts options.inspect
       command = [
         "notify-send", "-i",
         options[:image].to_s,
