@@ -12,8 +12,8 @@ module ExceptionNotificationExtension
     puts @options.inspect
     puts @options.class
 
-    @options[:on] = true if !@options[:on].present?
-    #@options[:timeout] = 5000 if !@options[:timeout].present?
+    @options[:on] = true if !@options.key?(:on)
+    @options[:timeout] = 5000 if !@options.key(:timeout)
     #
     if @options[:on]
 
@@ -43,7 +43,7 @@ module ExceptionNotificationExtension
         os_notify(title, output)
 
         if bs.present?
-          @options[:editor] = "subl" if !@options[:editor].present? || ["subl", "atom"].index(@options[:editor]).nil?
+          @options[:editor] = "subl" if !@options.key?(:editor) || ["subl", "atom"].index(@options[:editor]).nil?
           open_file_in_editor(get_path(bs[0])) # tested with atom
         end
 
@@ -76,8 +76,8 @@ module ExceptionNotificationExtension
     Notifier.notify(
       :image   => Rails.root.to_path + "/public/favicon.ico",
       :title   => title.present? ? title : "Exception Notifier",
-      :message => msg#,
-      #:timeout => @options[:timeout]
+      :message => msg,
+      :timeout => @options[:timeout]
     )
   end
 end
@@ -92,19 +92,19 @@ end
 
 
 
-# module Notifier
-#   module NotifySend
-#     def notify(options)
-#       command = [
-#         "notify-send", "-i",
-#         options[:image].to_s,
-#         options[:title].to_s,
-#         options[:message].to_s,
-#         "-t",
-#         options[:timeout].present? ? options[:timeout].to_s : "5000"
-#       ]
+module Notifier
+  module NotifySend
+    def notify(options)
+      command = [
+        "notify-send", "-i",
+        options[:image].to_s,
+        options[:title].to_s,
+        options[:message].to_s,
+        "-t",
+        options[:timeout].present? ? options[:timeout].to_s : "5000"
+      ]
 
-#       Thread.new { system(*command) }.join
-#     end
-#   end
-# end
+      Thread.new { system(*command) }.join
+    end
+  end
+end
