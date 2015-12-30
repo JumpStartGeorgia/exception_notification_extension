@@ -6,9 +6,9 @@ require 'notifier'
 
 module ExceptionNotificationExtension
  def exception_notification(env, exception)
-    @options[:on] = true if !@options[:editor].present?
+    @options[:on] = true if !@options[:on].present?
     @options[:timeout] = 5000 if !@options[:timeout].present?
-    
+
     super(env, exception)
 
     if @options[:on]
@@ -72,8 +72,8 @@ module ExceptionNotificationExtension
     Notifier.notify(
       :image   => Rails.root.to_path + "/public/favicon.ico",
       :title   => title.present? ? title : "Exception Notifier",
-      :message => msg,
-      :timeout => @options[:timeout]
+      :message => msg#,
+      #:timeout => @options[:timeout]
     )
   end
 end
@@ -88,19 +88,19 @@ end
 
 
 
-module Notifier
-  module NotifySend
-    def notify(options)
-      command = [
-        "notify-send", "-i",
-        options[:image].to_s,
-        options[:title].to_s,
-        options[:message].to_s,
-        "-t",
-        options[:timeout].present? ? options[:timeout].to_s : "5000"
-      ]
+# module Notifier
+#   module NotifySend
+#     def notify(options)
+#       command = [
+#         "notify-send", "-i",
+#         options[:image].to_s,
+#         options[:title].to_s,
+#         options[:message].to_s,
+#         "-t",
+#         options[:timeout].present? ? options[:timeout].to_s : "5000"
+#       ]
 
-      Thread.new { system(*command) }.join
-    end
-  end
-end
+#       Thread.new { system(*command) }.join
+#     end
+#   end
+# end
