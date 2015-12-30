@@ -39,16 +39,17 @@ Any additional options should be applied to config/environments/development.rb f
     :on => true
 ```
 - :editor - Default editor is sublime(subl), as for now you can use subl or atom editor
-  ```ruby
-      :editor => "atom",
-  ```
+```ruby
+    :editor => "atom",
+```
 - :on - temporarily turn off extension, (require rails server to be reloaded)
-  ```ruby
+```ruby
   :on => false
-  ```
-- :timeout change popup visibility time in milliseconds after which it will disappear, (only notify-send can do this for now, for other os to support it need user request.)
+```
+
+- :timeout - change popup visibility time in milliseconds after which it will disappear, (only notify-send can do this for now, for other os to support it need user request.)
   ```ruby
-  :timeout => 6000
+    :timeout => 6000
   ```
 ## Notes
 
