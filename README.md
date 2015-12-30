@@ -24,15 +24,28 @@ Or install it yourself as:
 
 ## Usage
 
-Default editor is sublime text(command:subl), if you want to change to atom then use 
+That's it, on error popup will appear and file will be opened in editor.
+
+## Options
+
+Any additional options should be applied to config/environments/development.rb file where ExceptionNotifier is binded to middleware
 
 ```ruby
   config.middleware.use ExceptionNotifier,
     :email_prefix => XXX,
     :sender_address => XXX,
     ...
-    :editor => "atom"
+    :editor => "subl",
+    :on => true
 ```
+- :editor - Default editor is sublime(subl), as for now you can use subl or atom editor
+  ```ruby
+      :editor => "atom",
+  ```
+- :on - temporarily turn off extension, (require rails server to be reloaded)
+  ```ruby
+  :on => false
+  ```
 
 ## Notes
 
@@ -40,8 +53,7 @@ Default editor is sublime text(command:subl), if you want to change to atom then
   - It uses notifer gem to show popup, if popup is not showing go to [notifier](https://github.com/fnando/notifier) there is guide for each os
   - It should work for other editors two which support openning file on specific line but now it checks if it is sublime or atom and if not sets it to be sublime
 
-## Todo 
-  - ability to turn off extension from configuration file with flag
+## Todo   
   - ability to add custom format for popup
   - add customizable timeout for popup to stay longer
 
