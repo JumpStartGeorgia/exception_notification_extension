@@ -9,23 +9,10 @@ module ExceptionNotificationExtension
 
     super(env, exception)
 
-    puts @options.inspect
-    puts @options.class
-
     @options[:on] = true if !@options.key?(:on)
     @options[:timeout] = 5000 if !@options.key(:timeout)
     #
     if @options[:on]
-
-      #@env        = env
-      #@exception  = exception
-      #@options    = (env['exception_notifier.options'] || {}).reverse_merge(self.class.default_options)
-      #@kontroller = env['action_controller.instance'] || MissingController.new
-      #@request    = ActionDispatch::Request.new(env)
-      #@backtrace  = clean_backtrace(exception)
-      #@sections   = @options[:sections]
-      #data        = env['exception_notifier.exception_data'] || {}
-
       begin
         title = "#{@exception.class} in #{@kontroller.controller_name}##{@kontroller.action_name}"
         output = ""
@@ -101,7 +88,7 @@ module Notifier
         options[:title].to_s,
         options[:message].to_s,
         "-t",
-        "1000"
+        options[:timeout].to_s
       ]
 
       Thread.new { system(*command) }.join
