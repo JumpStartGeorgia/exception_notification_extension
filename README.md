@@ -46,7 +46,10 @@ Any additional options should be applied to config/environments/development.rb f
   ```ruby
   :on => false
   ```
-
+- :timeout change popup visibility time in milliseconds after which it will disappear, (only notify-send can do this for now, for other os to support it need user request.)
+  ```ruby
+  :timeout => 6000
+  ```
 ## Notes
 
   - If more then one editor is opened then file is opened in a window that was last active.
@@ -55,7 +58,7 @@ Any additional options should be applied to config/environments/development.rb f
 
 ## Todo   
   - ability to add custom format for popup
-  - add customizable timeout for popup to stay longer
+  - timeout for popup to stay longer for different os now works only for ubuntu notify-send library
 
 ## Contributing
 
