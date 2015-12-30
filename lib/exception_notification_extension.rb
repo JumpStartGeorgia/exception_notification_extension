@@ -10,7 +10,7 @@ module ExceptionNotificationExtension
     super(env, exception)
 
     @options[:on] = true if !@options.key?(:on)
-    @options[:timeout] = 5000 if !@options.key(:timeout)
+    @options[:timeout] = 5000 if !@options.key?(:timeout)
     #
     if @options[:on]
       begin
@@ -82,7 +82,6 @@ end
 module Notifier
   module NotifySend
     def notify(options)
-      puts options.inspect
       command = [
         "notify-send", "-i",
         options[:image].to_s,
