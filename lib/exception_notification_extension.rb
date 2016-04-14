@@ -22,8 +22,8 @@ module ExceptionNotificationExtension
         output += bs.join("\n")
 
         pars = []
-        @request.parameters.each {|k, v| 
-          pars.push("#{k}: #{v}") if !["controller", "action"].index(k).present? 
+        @request.parameters.each {|k, v|
+          pars.push("#{k}: #{v}") if !["controller", "action"].index(k).present?
         }
         output += "\n{ #{pars.join(', ')} }" if pars.present?
 
@@ -46,7 +46,7 @@ module ExceptionNotificationExtension
     first = 0
 
     for i in (path.length - 1)..0
-      if s[i] == " " 
+      if s[i] == " "
         first = i
         break
       end
@@ -54,12 +54,12 @@ module ExceptionNotificationExtension
     path = path[first, path.length]
 
     return Rails.root.to_path + "/" + path
-   
+
   end
   def open_file_in_editor( path)
     system "#{@options[:editor]} #{path}"
   end
-  def os_notify(title, msg)    
+  def os_notify(title, msg)
     Notifier.notify(
       :image   => Rails.root.to_path + "/public/favicon.ico",
       :title   => title.present? ? title : "Exception Notifier",
@@ -70,10 +70,17 @@ module ExceptionNotificationExtension
 end
 
 
-
-class ExceptionNotifier
-  class Notifier < ActionMailer::Base
-    prepend ExceptionNotificationExtension
+if ExceptionNotifier.class == Class
+  class ExceptionNotifier
+    class Notifier < ActionMailer::Base
+      prepend ExceptionNotificationExtension
+    end
+  end
+else ExceptionNotifier.class == Module
+  module ExceptionNotifier
+    class Notifier
+      prepend ExceptionNotificationExtension
+    end
   end
 end
 
