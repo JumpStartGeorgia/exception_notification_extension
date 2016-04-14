@@ -29,10 +29,10 @@ Gem::Specification.new do |spec|
 
   #spec.requirements << 'exception_notification", "~> 2.5.2"'
 
-  spec.add_runtime_dependency 'exception_notification', '~> 2.5', '>= 2.5.2'
-  spec.add_runtime_dependency 'notifier', '~> 0'
+  spec.add_runtime_dependency 'exception_notification'#, '~> 2.5', '>= 2.5.2'
+  spec.add_runtime_dependency 'notifier'#, '~> 0'
 
-  spec.add_development_dependency "bundler", "~> 1.10"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler"#, "~> 1.10"
+  spec.add_development_dependency "rake"#, "~> 10.0"
   spec.add_development_dependency "rspec"
 end
