@@ -1,6 +1,6 @@
 # ExceptionNotificationExtension
 
-Add ability to show exception info using os notification system and open file with error in your editor on specific line. 
+Add ability to show exception info using os notification system and open file with error in your editor on specific line.
 It is an extension for basic exception notification system for rails [exception_notification](https://github.com/rails/exception_notification).
 
 
@@ -28,8 +28,19 @@ That's it, on error popup will appear and file will be opened in editor.
 
 ## Options
 
-Any additional options should be applied to config/environments/development.rb file where ExceptionNotifier is binded to middleware
+Any additional options should be applied to config/environments/development.rb file where ExceptionNotifier is binded to middleware.
 
+For exception_notification version greater then 4.0 use (code is created as separate notifier):
+```ruby
+  config.middleware.use ExceptionNotification::Rack,
+  :editor => {
+    :editor => "subl",
+    :on => true,
+    :timeout => 5000
+  }
+```
+
+For exception_notification version less then 4.0 use (it uses email notifier as base):
 ```ruby
   config.middleware.use ExceptionNotifier,
     :email_prefix => XXX,
@@ -61,7 +72,7 @@ Any additional options should be applied to config/environments/development.rb f
   - It uses notifer gem to show popup, if popup is not showing go to [notifier](https://github.com/fnando/notifier) there is guide for each os
   - It should work for other editors two which support openning file on specific line but now it checks if it is sublime or atom and if not sets it to be sublime
 
-## Todo   
+## Todo
   - ability to add custom format for popup
   - timeout for popup to stay longer for different os now works only for ubuntu notify-send library
 
