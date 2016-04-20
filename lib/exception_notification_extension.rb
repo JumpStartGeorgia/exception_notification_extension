@@ -50,20 +50,20 @@ module ExceptionNotifier
       include ExceptionNotifier::BacktraceCleaner
 
       def initialize(options)
-        @default_options = options
+        @settings = options
       end
 
       def call(exception, options={})
         env = options[:env]
         @env        = env
-        @options    = options.reverse_merge(env['exception_notifier.options'] || {}).reverse_merge(@default_options)
+        @options    = options.reverse_merge(env['exception_notifier.options'] || {}).reverse_merge(@settings)
         @kontroller = env['action_controller.instance'] || MissingController.new
         @request    = ActionDispatch::Request.new(env)
         @backtrace  = exception.backtrace ? clean_backtrace(exception) : []
 
-        options[:on] = true if !options.key?(:on)
-        options[:timeout] = 5000 if !options.key?(:timeout)
-        if options[:on]
+        @settings[:on] = true if !@settings.key?(:on)
+        @settings[:timeout] = 5000 if !@settings.key?(:timeout)
+        if @settings[:on]
           begin
             title = "#{exception.class} in #{@kontroller.controller_name}##{@kontroller.action_name}"
             output = ""
@@ -75,10 +75,10 @@ module ExceptionNotifier
               pars.push("#{k}: #{v}") if !["controller", "action"].index(k).present?
             }
             output += "\n{ #{pars.join(', ')} }" if pars.present?
-            os_notify(title, output, options)
+            os_notify(title, output, @settings)
             if bs.present?
-              options[:editor] = "subl" if !options.key?(:editor) || ["subl", "atom"].index(options[:editor]).nil?
-              open_file_in_editor(get_path(bs[0]), options) # tested with atom
+              @settings[:editor] = "subl" if !@settings.key?(:editor) || ["subl", "atom"].index(@settings[:editor]).nil?
+              open_file_in_editor(get_path(bs[0]), @settings) # tested with atom
             end
           rescue Exception => e
             puts "ExceptionNotifierExtensions has some errors #{e.inspect}"
